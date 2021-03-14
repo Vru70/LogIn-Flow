@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <decisions>
+        <name>isAccepted</name>
+        <label>isAccepted</label>
+        <locationX>373</locationX>
+        <locationY>316</locationY>
+        <defaultConnector>
+            <targetReference>plzAccept</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Accepted</defaultConnectorLabel>
+        <rules>
+            <name>Accepted</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Agree</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Accepted</label>
+        </rules>
+    </decisions>
+    <interviewLabel>accept terms {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Accept Terms and Condition</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <name>plzAccept</name>
+        <label>Please Accept</label>
+        <locationX>659</locationX>
+        <locationY>301</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Terms_and_Condition</targetReference>
+        </connector>
+        <fields>
+            <name>notaccepted</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Please Accept Terms and Condition to login in&lt;/span&gt;&lt;b style=&quot;font-size: 16px; color: rgb(83, 160, 240);&quot;&gt; Salesforce &lt;/b&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Org&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Thank You.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Terms_and_Condition</name>
+        <label>Terms and Condition</label>
+        <locationX>508</locationX>
+        <locationY>69</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>isAccepted</targetReference>
+        </connector>
+        <fields>
+            <name>terms</name>
+            <fieldText>&lt;p&gt;Please accept the following terms and conditions :&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;1. List of Terms and Conditions to Log in Salesforce Org.  &lt;/p&gt;&lt;p&gt;.&lt;/p&gt;&lt;p&gt;.&lt;/p&gt;&lt;p&gt;.&lt;/p&gt;&lt;p&gt;n...&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Agree</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Agree</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Terms_and_Condition</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+</Flow>
